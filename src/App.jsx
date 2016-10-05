@@ -22,8 +22,28 @@ var data = {
 const App = React.createClass({
 
 
-  getInitialState() {
-    return {loading: data};
+  getInitialState: function() {
+    function addMessage(name, message) {
+      var data = {
+        currentUser: {name: name},
+        messages: this.state.loading.messages.concat({id: Date.now(), username: name, content: message})
+      };
+      this.setState({
+        loading: data
+      });
+    }
+    return {loading: data, addMessage: addMessage.bind(this)};
+  },
+
+  componentDidMount: function() {
+    console.log("componentDidMount <App />");
+    setTimeout(() => {
+      console.log("Simulating incoming message");
+      // Add a new message to the list of messages in the data store
+      this.state.loading.messages.push({id: 3, username: "Michelle", content: "Hello there!"});
+      // Update the state of the app component. This will call render()
+      this.setState({data: this.state.data})
+    }, 3000);
   },
 
   render: function() {
@@ -32,7 +52,8 @@ const App = React.createClass({
         <MessageList
         messages = {this.state.loading.messages} />
         <ChatBar
-        username = {this.state.loading.currentUser.name} />
+        username = {this.state.loading.currentUser.name}
+        sendMessage = {this.state.addMessage} />
       </div>
     );
   }
