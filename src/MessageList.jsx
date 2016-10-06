@@ -2,6 +2,8 @@ import React from 'react';
 import App from './App.jsx';
 import Message from './Message.jsx';
 
+var uuid = require('uuid');
+
 const MessageList = React.createClass({
 
   propTypes: {
@@ -21,8 +23,8 @@ const MessageList = React.createClass({
       <div id="message-list">
         {this.props.messages.map((result) => (
           <Message
-            key = {result.key}
-            user_name = {result.username}
+            key = {uuid.v1()}
+            user_name = {result.user_name}
             content = {result.content}
             />
         ))}

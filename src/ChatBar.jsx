@@ -3,10 +3,6 @@ import App from './App.jsx';
 
 const ChatBar = React.createClass({
 
-  propTypes: {
-      username: React.PropTypes.string
-    },
-
   getDefaultProps: function() {
     return {
       username: "Your Name (Optional)",
@@ -17,8 +13,12 @@ const ChatBar = React.createClass({
   handleChange(event) {
     if (event.keyCode == 13) {
       var username = this.refs.username.value;
-      var message = this.state.value;
-      this.props.sendMessage(username, message);
+      var messages = this.state.value;
+      console.log(username);
+      console.log(messages);
+      console.log(this.props);
+      this.props.sendMessage(username, messages);
+
     }
   },
 
