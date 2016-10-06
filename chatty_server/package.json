@@ -1,0 +1,24 @@
+{
+  "name": "colorwheeloflife",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/colorwheeloflife/react_chat_lighthouse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/colorwheeloflife/react_chat_lighthouse/issues"
+  },
+  "homepage": "https://github.com/colorwheeloflife/react_chat_lighthouse#readme",
+  "dependencies": {
+    "express": "4.14.0",
+    "node-uuid": "1.4.7",
+    "ws": "1.1.1"
+  }
+}
