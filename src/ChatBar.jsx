@@ -19,8 +19,6 @@ const ChatBar = React.createClass({
     this.setState({value: event.target.value});
   },
 
-
-
   render() {
     console.log("Rendering <ChatBar/>");
     return(
@@ -47,5 +45,3 @@ const ChatBar = React.createClass({
 
 
 export default ChatBar;
-
-

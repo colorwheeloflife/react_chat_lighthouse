@@ -10,7 +10,6 @@ var socket = new WebSocket("ws://localhost:8080");
 const App = React.createClass({
 
   getInitialState: function() {
-
     var currentUser = {};
     var messages = [];
     var notifications = [];
@@ -18,12 +17,8 @@ const App = React.createClass({
   },
 
   componentDidMount: function() {
-    console.log("componentDidMount <App />");
-
     socket.onmessage = ({data}) => {
-      console.log("HERE HERE");
       var parsed = JSON.parse(data);
-      console.log
 
       switch(parsed.type) {
         case "incomingMessage":
@@ -33,21 +28,16 @@ const App = React.createClass({
           var nowUser = newMessages[newMessages.length - 1].user_name;
           var lastUser = newMessages[newMessages.length - 2].user_name;
           if(nowUser != lastUser) {
-            console.log('YIPPE');
             var content = lastUser + " changed their name to " + nowUser;
-            console.log(content);
             this.addNofication(content);
           }
           break;
         case "incomingNotification":
           var newNotification = this.state.notifications;
           newNotification.push(parsed);
-          var thisNotification = (newNotification[newNotification.length - 1]);
-          console.log(thisNotification);
-          this.setState({notifications: thisNotification});
+          this.setState({notifications: newNotification});
           break;
         default:
-          // show an error in the console if the message type is unknown
           throw new Error("Unknown event type " + data.type);
       }
     }
@@ -90,5 +80,3 @@ const App = React.createClass({
 
 
 export default App;
-
-

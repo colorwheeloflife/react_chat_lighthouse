@@ -11,7 +11,7 @@ const Message = React.createClass({
           <span className="user_name">{this.props.user_name}</span>
           <span className="content">{this.props.content}</span>
         </div>
-        <div className="message system">
+        <div className="message_system">
           <span className="notifications">{this.props.notification_content}</span>
         </div>
       </section>
@@ -20,10 +20,3 @@ const Message = React.createClass({
 });
 
 export default Message;
-
-
-
-
-
-
-

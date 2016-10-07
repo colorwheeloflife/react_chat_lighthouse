@@ -1,8 +1,9 @@
 import React from 'react';
 import App from './App.jsx';
 import Message from './Message.jsx';
-
 var uuid = require('uuid');
+
+
 
 const MessageList = React.createClass({
 
@@ -19,6 +20,8 @@ const MessageList = React.createClass({
 
   render() {
     console.log("Rendering <MessageList/>");
+    console.log('right heeeeere');
+    console.log(this.props.notifications);
     return(
       <section>
         <div id="message-list">
@@ -29,11 +32,9 @@ const MessageList = React.createClass({
               content = {result.content}
               />
           ))}
-        </div>
-        <div id="message_notification">
           {this.props.notifications.map((result) => (
             <Message
-              notification_content = {this.props.notifications.content}
+              content = {result.content}
               />
           ))}
         </div>
@@ -41,7 +42,6 @@ const MessageList = React.createClass({
     );
   }
 });
-
 
 
 
