@@ -20,16 +20,24 @@ const MessageList = React.createClass({
   render() {
     console.log("Rendering <MessageList/>");
     return(
-      <div id="message-list">
-        {this.props.messages.map((result) => (
-          <Message
-            key = {uuid.v1()}
-            user_name = {result.user_name}
-            content = {result.content}
-            />
-        ))}
-
-      </div>
+      <section>
+        <div id="message-list">
+          {this.props.messages.map((result) => (
+            <Message
+              key = {uuid.v1()}
+              user_name = {result.user_name}
+              content = {result.content}
+              />
+          ))}
+        </div>
+        <div id="message_notification">
+          {this.props.notifications.map((result) => (
+            <Message
+              notification_content = {this.props.notifications.content}
+              />
+          ))}
+        </div>
+      </section>
     );
   }
 });

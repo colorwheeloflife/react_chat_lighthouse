@@ -28,8 +28,28 @@ wss.on('connection', (socket) => {
   console.log('Client connected');
 
   socket.on('message', (data) => {
-    // var incoming = JSON.parse(data);
-    wss.broadcast(data);
+    var d_a_t_a = JSON.parse(data);
+    newMessage = {};
+
+    if (d_a_t_a.type === 'postMessage') {
+      newMessage = {
+        type: 'incomingMessage',
+        key: d_a_t_a.key,
+        user_name: d_a_t_a.user_name,
+        content: d_a_t_a.content
+      };
+    } else if (d_a_t_a.type === "postNofication") {
+      newMessage = {
+        type: 'incomingNotification',
+        key: d_a_t_a.key,
+        user_name: d_a_t_a.user_name,
+        content: d_a_t_a.content
+      };
+    } else {
+      console.log('well fudge');
+    }
+
+    wss.broadcast(JSON.stringify(newMessage));
   })
 
 

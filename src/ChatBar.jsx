@@ -3,22 +3,11 @@ import App from './App.jsx';
 
 const ChatBar = React.createClass({
 
-  getDefaultProps: function() {
-    return {
-      username: "Your Name (Optional)",
-      newmessage: "Type a message and hit ENTER"
-    }
-  },
-
   handleChange(event) {
     if (event.keyCode == 13) {
       var username = this.refs.username.value;
       var messages = this.state.value;
-      console.log(username);
-      console.log(messages);
-      console.log(this.props);
       this.props.sendMessage(username, messages);
-
     }
   },
 
@@ -41,7 +30,8 @@ const ChatBar = React.createClass({
           type="text"
           ref="username"
           onChange={this.handleNameChange}
-          value= {this.props.username} />
+          value= {this.props.currentUser}
+          placeholder="Your Name (Optional)"/>
         <input
           id="new-message"
           type="text"
