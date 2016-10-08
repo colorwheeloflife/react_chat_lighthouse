@@ -7,26 +7,29 @@ const server = express()
 const wss = new SocketServer({ server });
 
 
-
 wss.broadcast = (data) => {
-
   wss.clients.forEach((client) => {
     client.send(data);
   });
 };
 
+
 wss.on('connection', (socket) => {
   console.log('Client connected');
+  console.log('Number of clients connected: ' + wss.clients.length);
 
-  var clients = [];
-  var clientsOnline = clients.length;
+  var client_count = wss.clients.length;
+  client_counter = {
+    type: 'client_count',
+    count: client_count
+  }
+  wss.broadcast(JSON.stringify(client_counter));
+
 
   socket.on('message', (data) => {
     var d_a_t_a = JSON.parse(data);
-
-    clients.push(d_a_t_a);
-
     newMessage = {};
+    console.log('message received ', d_a_t_a.type);
 
     if (d_a_t_a.type === 'postMessage') {
       newMessage = {
@@ -49,7 +52,5 @@ wss.on('connection', (socket) => {
     wss.broadcast(JSON.stringify(newMessage));
   })
 
-  // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   socket.on('close', () => console.log('Client disconnected'));
-
 });

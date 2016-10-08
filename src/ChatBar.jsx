@@ -1,6 +1,7 @@
 import React from 'react';
 import App from './App.jsx';
 
+
 const ChatBar = React.createClass({
 
   handleChange(event) {
@@ -12,7 +13,9 @@ const ChatBar = React.createClass({
   },
 
   handleNameChange() {
+    // const user_name = this.props.messages.user_name;
     this.setState({currentUser: event.target.value});
+
   },
 
   handleInput(event) {
@@ -20,7 +23,6 @@ const ChatBar = React.createClass({
   },
 
   render() {
-    console.log("Rendering <ChatBar/>");
     return(
       <footer>
         <input

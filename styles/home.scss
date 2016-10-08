@@ -6,7 +6,9 @@ nav { height: 40px; padding: 8px; border-bottom: 1px solid black; background-col
 
 nav h1 { margin: 0; }
 
-#message-list { height: calc(100vh - 131px); padding: 16px 8px;}
+nav h4 { float: right; margin: 0;}
+
+#message-list { height: calc(100vh - 131px); padding: 16px 8px; overflow: scroll;}
 
 #message-list .message { padding: 4px 0;  display: flex;}
 

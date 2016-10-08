@@ -2,9 +2,9 @@ import React from 'react';
 import App from './App.jsx';
 import MessageList from './MessageList.jsx';
 
+
 const Message = React.createClass({
   render() {
-    console.log("Rendering <Message/>");
     return(
       <section>
         <div className="message">

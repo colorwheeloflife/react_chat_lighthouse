@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import ChatBar from './ChatBar.jsx';
 import Message from './Message.jsx';
 import MessageList from './MessageList.jsx';
-var uuid = require('uuid');
-var socket = new WebSocket("ws://localhost:8080");
+import ClientCount from './ClientCount.jsx';
+const uuid = require('uuid');
+const socket = new WebSocket("ws://localhost:8080");
 
 
 
@@ -13,7 +14,8 @@ const App = React.createClass({
     var currentUser = {};
     var messages = [];
     var notifications = [];
-    return {currentUser: currentUser, messages: messages, notifications: notifications};
+    var client_count = "";
+    return {currentUser: currentUser, messages: messages, notifications: notifications, client_count: client_count};
   },
 
   componentDidMount: function() {
@@ -37,6 +39,11 @@ const App = React.createClass({
           newNotification.push(parsed);
           this.setState({notifications: newNotification});
           break;
+        case "client_count":
+          var client_counter = this.state.client_counter;
+          client_counter = parsed.count;
+          this.setState({client_count: client_counter});
+          break;
         default:
           throw new Error("Unknown event type " + data.type);
       }
@@ -58,24 +65,32 @@ const App = React.createClass({
       type: 'postNofication',
       content: notification
     };
+    console.log('sending post notification to server');
     socket.send(JSON.stringify(notify));
   },
 
   render: function() {
     return (
       <div>
-        <MessageList
-        messages={this.state.messages}
-        notifications={this.state.notifications}/>
-        <ChatBar
-        currentUser={this.state.currentUser.name}
-        sendMessage={this.addMessage} />
+        <div>
+          <ClientCount
+            client_count={this.state.client_count}
+          />
+        </div>
+        <div>
+          <MessageList
+          messages={this.state.messages}
+          notifications={this.state.notifications}/>
+          <ChatBar
+          currentUser={this.state.currentUser.name}
+          messages={this.state.messages}
+          sendMessage={this.addMessage} />
+        </div>
       </div>
     );
   }
 
 });
-
 
 
 

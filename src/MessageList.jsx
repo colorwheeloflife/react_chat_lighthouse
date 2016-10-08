@@ -1,8 +1,7 @@
 import React from 'react';
 import App from './App.jsx';
 import Message from './Message.jsx';
-var uuid = require('uuid');
-
+const uuid = require('uuid');
 
 
 const MessageList = React.createClass({
@@ -19,9 +18,6 @@ const MessageList = React.createClass({
   },
 
   render() {
-    console.log("Rendering <MessageList/>");
-    console.log('right heeeeere');
-    console.log(this.props.notifications);
     return(
       <section>
         <div id="message-list">
