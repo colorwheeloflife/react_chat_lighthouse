@@ -28,11 +28,6 @@ const MessageList = React.createClass({
               content = {result.content}
               />
           ))}
-          {this.props.notifications.map((result) => (
-            <Message
-              content = {result.content}
-              />
-          ))}
         </div>
       </section>
     );
